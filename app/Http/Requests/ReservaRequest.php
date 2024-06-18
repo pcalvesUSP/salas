@@ -50,7 +50,7 @@ class ReservaRequest extends FormRequest
 
         if(!Gate::allows('responsavel', Sala::find($this->sala_id))){
             array_push($rules['data'], 'after_or_equal:today');
-            $rules['horario_inicio'] .= 'after:'. date('G:i');
+            //$rules['horario_inicio'] .= 'after:'. date('d/m/Y G:i');
         }
 
         return $rules;

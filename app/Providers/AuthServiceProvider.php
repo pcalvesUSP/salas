@@ -36,6 +36,8 @@ class AuthServiceProvider extends ServiceProvider
          **/
         Gate::define('owner', function ($user, $instance) {
             if(Gate::allows('admin')) return true;
+            if(Gate::allows('poweruser')) return true;
+
             if($instance->user_id == $user->id) return true;
             return false;
         });
@@ -46,6 +48,7 @@ class AuthServiceProvider extends ServiceProvider
          */
         Gate::define('members', function ($user, $sala_id) {
             if(Gate::allows('admin')) return true;
+            if(Gate::allows('poweruser')) return true;
 
             /* o $user está numa categoria que tem a sala_id? */
             $sala = Sala::find($sala_id);
@@ -79,6 +82,7 @@ class AuthServiceProvider extends ServiceProvider
          */
         Gate::define('responsavel', function($user, $sala){
             if(Gate::allows('admin')) return true;
+            if(Gate::allows('poweruser')) return true;
 
             foreach($sala->responsaveis as $responsavel){
                 if($responsavel->id == $user->id) return true;
@@ -92,6 +96,7 @@ class AuthServiceProvider extends ServiceProvider
          */
         Gate::define('reserva.editar', function($user, $reserva){
             if(Gate::allows('admin')) return true;
+            if(Gate::allows('poweruser')) return true;
 
             // Se a sala não necessita de aprovação retorna true.
             if(!$reserva->sala->aprovacao) return true;

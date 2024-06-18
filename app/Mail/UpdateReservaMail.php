@@ -33,9 +33,17 @@ class UpdateReservaMail extends Mailable
     public function build()
     {
         $user = User::find($this->reserva->user_id);
+        $this->view('emails.update_reserva')
+             ->subject('Reserva modificada - Sistema Reserva de Salas')
+             ->to($user->email)
+             ->with([
+                        'reserva' => $this->reserva,
+                        'data' => $this->reserva->getRawOriginal('data'),
+                    ]);
+
         return $this->view('emails.update_reserva')
                     ->subject('Reserva modificada - Sistema Reserva de Salas')
-                    ->to($user->email)
+                    ->to('reservafcf@usp.br')
                     ->with([
                         'reserva' => $this->reserva,
                         'data' => $this->reserva->getRawOriginal('data'),

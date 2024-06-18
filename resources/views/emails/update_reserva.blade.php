@@ -1,4 +1,4 @@
-<h2>Reserva(s): <a href="{{route('reservas.show', ['reserva' => $reserva->id])}}">{{$reserva->id}}</a> modificada(s) no site <a href="{{route('home')}}" >{{route('home')}}</a></h2>
+<h2>Reserva(s): <a href="{{route('reservas.show', ['reserva' => $reserva->id])}}">{{$reserva->id}}</a> modificada(s) no site <a href="{{route('home')}}" >{{ env('APP_NAME') }}</a></h2>
 
 <h3><b>Título:</b> {{$reserva->nome}} </h3>
 <p><b>Horário:</b> {{$reserva->horario_inicio}} </p>
@@ -17,4 +17,5 @@
 
 <br>
 
-<p>Mensagem automática do sistema de reserva de salas: {{route('home')}}</p>
+<p>Mensagem automática do <a href="{{ route('home')}}">{{ env('APP_NAME') }}</a></p>
+

@@ -34,7 +34,7 @@
                 <li class="list-group-item">
                     <div class="card">
                         <div class="card-header" id="categoria-header" type="button" data-toggle="collapse" data-target="#collapse{{ $categoria->id }}" aria-expanded="false" aria-controls="collapse{{ $categoria->id }}">
-                            @can('admin')
+                            @canany(['admin','boss'])
                                 <a href="/categorias/{{ $categoria->id }}">{{ $categoria->nome }}</a>
                             @else
                                 {{ $categoria->nome }}

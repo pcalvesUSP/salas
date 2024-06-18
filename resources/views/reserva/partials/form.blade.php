@@ -38,7 +38,7 @@
 
         <div class="row">
             <div class="col-sm form-group">
-                <label for="" class="required"><b>Descrição</b></label>
+                <label for="" class="required"><b>Descrição (informe telefone e e-mail de contato)</b></label>
                 <br>
                 <textarea name="descricao" class="form-control" rows="3">{{  old('descricao', $reserva->descricao) }}</textarea>
                 <br>

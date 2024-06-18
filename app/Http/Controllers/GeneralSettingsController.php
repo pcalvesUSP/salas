@@ -9,7 +9,8 @@ use App\Http\Requests\GeneralSettingsRequest;
 class GeneralSettingsController extends Controller
 {
     public function show(GeneralSettings $settings){
-        $this->authorize('admin');
+        
+        $this->authorize('boss');
 
         return view('settings.show', [
             'cor' => $settings->cor,
@@ -17,7 +18,8 @@ class GeneralSettingsController extends Controller
     }
 
     public function update(GeneralSettingsRequest $request,GeneralSettings $settings){
-        $this->authorize('admin');
+        
+        $this->authorize('boss');
         
         $settings->cor = $request->input('cor');       
         $settings->save();

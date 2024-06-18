@@ -52,7 +52,7 @@ class ReservaController extends Controller
     public function create(GeneralSettings $settings)
     {
         $this->authorize('logado');
-        if (Gate::allows('admin')) {
+        if (Gate::allows('admin') || Gate::allows('boss')) {
             $categorias = Categoria::with('salas.recursos')->get();
         } else {
             $categoria_id = auth()->user()->categorias->map(function ($item, $key) {
@@ -170,8 +170,9 @@ class ReservaController extends Controller
     {
         $this->authorize('owner', $reserva);
         $this->authorize('reserva.editar', $reserva);
+        $this->authorize('poweruser', $reserva);        
 
-        if (Gate::allows('admin')) {
+        if (Gate::allows('admin') || Gate::allows('boss')) {
             $categorias = Categoria::with('salas.recursos')->get();
         } else {
             $categoria_id = auth()->user()->categorias->map(function ($item, $key) {
@@ -215,6 +216,7 @@ class ReservaController extends Controller
     public function update(ReservaRequest $request, Reserva $reserva)
     {
         $this->authorize('owner', $reserva);
+        $this->authorize('poweruser', $reserva);
 
         // 1 - caso de edição de reserva sem repetições
         if(!isset($request->rep_bool) or empty($request->rep_bool)) {
@@ -282,6 +284,7 @@ class ReservaController extends Controller
     public function destroy(Request $request, Reserva $reserva)
     {
         $this->authorize('owner', $reserva);
+        $this->authorize('poweruser', $reserva);
 
         Mail::queue(new DeleteReservaMail($reserva));
 

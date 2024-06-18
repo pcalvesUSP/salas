@@ -1,7 +1,7 @@
 @if ($reserva->status == 'pendente')
-    <h2>Novo pedido de <a href="{{route('reservas.show', ['reserva' => $reserva->id])}}">reserva(s)</a> solicitada(s) no site <a href="{{route('home')}}" >{{route('home')}}</a></h2>
+    <h2>Novo pedido de <a href="{{route('reservas.show', ['reserva' => $reserva->id])}}">reserva(s)</a> solicitada(s) no site <a href="{{route('home')}}" >{{ env('APP_NAME') }}</a></h2>
 @else
-    <h2>Nova(s) <a href="{{route('reservas.show', ['reserva' => $reserva->id])}}">reserva(s)</a> adicionada(s) no site <a href="{{route('home')}}" >{{route('home')}}</a></h2>
+    <h2>Nova(s) <a href="{{route('reservas.show', ['reserva' => $reserva->id])}}">reserva(s)</a> adicionada(s) no site <a href="{{route('home')}}" >{{ env('APP_NAME') }}</a></h2>
 @endif
 
 <h3><b>Título:</b> {{$reserva->nome}} </h3>
@@ -22,4 +22,4 @@
 <p><b>Status da reserva:</b> {{ucfirst($reserva->status)}} </p>
 
 <br>
-<p>Mensagem automática do sistema de reserva de salas: {{route('home')}}</p>
+<p>Mensagem automática do <a href="{{ route('home')}}">{{ env('APP_NAME') }}</a></p>

@@ -4,17 +4,17 @@ $admin = [
     [
         'text' => 'Nova Categoria',
         'url' => config('app.url').'/categorias/create',
-        'can' => 'admin',
+        'can' => 'boss',
     ],
     [
         'text' => 'Nova Sala',
         'url' => config('app.url').'/salas/create',
-        'can' => 'admin',
+        'can' => 'boss',
     ],
     [
         'text' => 'Recursos',
         'url' => config('app.url').'/recursos',
-        'can' => 'admin',
+        'can' => 'boss',
     ],
 ];
 
@@ -53,7 +53,7 @@ $menu = [
     [
         'text' => 'Administração',
         'submenu' => $admin,
-        'can' => 'admin',
+        'can' => 'boss',
     ],
 ];
 
@@ -64,7 +64,7 @@ $right_menu = [
         'target' => '_blank',
         'url' => config('app.url').'/settings',
         'align' => 'right',
-        'can' => 'admin',
+        'can' => 'poweruser',
     ],
     [
         'key' => 'senhaunica-socialite'

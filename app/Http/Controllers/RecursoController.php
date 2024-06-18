@@ -14,7 +14,7 @@ class RecursoController extends Controller
      */
     public function index()
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
         $recursos = Recurso::all();
 
         return view('recurso.index', [
@@ -31,7 +31,7 @@ class RecursoController extends Controller
      */
     public function store(RecursoRequest $request)
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
         $recurso = Recurso::create($request->validated());
 
         return redirect('/recursos')
@@ -45,7 +45,7 @@ class RecursoController extends Controller
      */
     public function destroy(Recurso $recurso)
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
         $recurso->delete();
 
         return redirect('/recursos')

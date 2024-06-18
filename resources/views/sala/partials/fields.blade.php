@@ -17,7 +17,7 @@
     </div>
 </table>
 </br>
-@can('admin')
+@canany(['admin','boss'])
     <form action="/salas/{{  $sala->id  }}" method="POST">
         <a class="btn btn-success" href="/salas/{{  $sala->id  }}/edit" role="button" data-bs-toggle="tooltip" title="Editar">
             <i class="fa fa-pen"></i>

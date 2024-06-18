@@ -33,9 +33,17 @@ class CreateReservaMail extends Mailable
     public function build()
     {
         $user = User::find($this->reserva->user_id);
+        $this->view('emails.create_reserva')
+             ->subject('Novo cadastro de reserva de sala — Sistema Reserva de Salas')
+             ->to($user->email)
+             ->with([
+                        'reserva' => $this->reserva,
+                        'data' => $this->reserva->getRawOriginal('data'),
+                    ]);
+
         return $this->view('emails.create_reserva')
                     ->subject('Novo cadastro de reserva de sala — Sistema Reserva de Salas')
-                    ->to($user->email)
+                    ->to('reservafcf@usp.br')
                     ->with([
                         'reserva' => $this->reserva,
                         'data' => $this->reserva->getRawOriginal('data'),

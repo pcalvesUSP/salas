@@ -18,7 +18,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
 
         return view('categoria.create', [
             'categoria' => new Categoria(),
@@ -34,8 +34,7 @@ class CategoriaController extends Controller
      */
     public function store(CategoriaRequest $request)
     {
-        $this->authorize('admin');
-
+        $this->authorize('boss');
         $categoria = Categoria::create($request->validated());
 
         return redirect("/categorias/{$categoria->id}")
@@ -64,8 +63,8 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        $this->authorize('admin');
-
+        $this->authorize('boss');
+        
         return view('categoria.edit', [
             'categoria' => $categoria,
         ]);
@@ -80,7 +79,7 @@ class CategoriaController extends Controller
      */
     public function update(CategoriaRequest $request, Categoria $categoria)
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
 
         $categoria->update($request->validated());
 
@@ -95,7 +94,7 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
 
         if($categoria->salas->isNotEmpty()){
             return redirect("/categorias/{$categoria->id}")
@@ -110,7 +109,7 @@ class CategoriaController extends Controller
 
     public function addUser(Request $request, Categoria $categoria)
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
 
         $request->validate([
             'codpes' => 'required|integer',
@@ -134,7 +133,7 @@ class CategoriaController extends Controller
             if (!($user instanceof \App\Models\User)) {
                 return redirect()->back()->withErrors(['codpes' => $user]);
             }
-        }else{
+        } else{
             $user = User::firstWhere('codpes', $pessoa['codpes']);
         }
 
@@ -161,7 +160,7 @@ class CategoriaController extends Controller
 
     public function removeUser(Request $request, Categoria $categoria, User $user)
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
 
         $categoria->users()->detach($user->id);
 

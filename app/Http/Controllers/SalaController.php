@@ -32,7 +32,7 @@ class SalaController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
 
         return view('sala.create', [
             'sala' => new Sala(),
@@ -50,7 +50,7 @@ class SalaController extends Controller
      */
     public function store(SalaRequest $request)
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
 
         $validated = $request->validated();
 
@@ -104,7 +104,7 @@ class SalaController extends Controller
      */
     public function edit(Sala $sala)
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
 
         $sala->load('recursos');
 
@@ -130,7 +130,7 @@ class SalaController extends Controller
      */
     public function update(SalaRequest $request, Sala $sala)
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
 
         $validated = $request->validated();
 
@@ -161,7 +161,7 @@ class SalaController extends Controller
      */
     public function destroy(Sala $sala)
     {
-        $this->authorize('admin');
+        $this->authorize('boss');
 
         if($sala->reservas->isNotEmpty()){
             return redirect("/salas/{$sala->id}")

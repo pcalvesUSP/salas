@@ -1,4 +1,4 @@
-<h2>Nova exclusão de reserva(s) de sala no site <a href="{{route('home')}}" >{{route('home')}}</a>.</h2>
+<h2>Nova exclusão de reserva(s) de sala no site <a href="{{route('home')}}" >{{ env('APP_NAME') }}</a>.</h2>
 
 <h3><b>Título:</b> {{$reserva->nome}} </h3>
 <p><b>Horário:</b> {{$reserva->horario_inicio}} </p>
@@ -17,4 +17,4 @@
 
 <br>
 
-<p>Mensagem automática do sistema de reserva de salas: {{route('home')}}</p>
+<p>Mensagem automática do <a href="{{ route('home')}}">{{ env('APP_NAME') }}</a></p>

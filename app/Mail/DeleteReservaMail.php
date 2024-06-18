@@ -33,9 +33,16 @@ class DeleteReservaMail extends Mailable
     public function build()
     {
         $user = User::find($this->reserva->user_id);
+        $this->view('emails.delete_reserva')
+             ->subject('Exclusão de reserva — Sistema Reserva de Salas')
+             ->to($user->email)
+             ->with([
+                        'reserva' => $this->reserva,
+                    ]);
+
         return $this->view('emails.delete_reserva')
                     ->subject('Exclusão de reserva — Sistema Reserva de Salas')
-                    ->to($user->email)
+                    ->to('reservafcf@usp.br')
                     ->with([
                         'reserva' => $this->reserva,
                     ]);
