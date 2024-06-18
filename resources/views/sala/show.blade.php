@@ -52,6 +52,8 @@
             expandRows: 'true',
             eventDisplay: 'block',
             allDaySlot: false,
+            scrollTime: "06:00:00", //6am
+            slotMinTime: "06:00:00",
             selectAllow: function(info){
                 if(parseInt({{Gate::allows('responsavel', App\Models\Sala::find($sala->id))}}))
                     return true;
